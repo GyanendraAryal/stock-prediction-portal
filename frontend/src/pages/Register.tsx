@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import axios from "axios";
 
 function Register() {
   type RegisterFormData = {
@@ -13,10 +14,19 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormData>();
+  //   http://localhost:8000/api/v1/register/
+  const onSubmit: SubmitHandler<RegisterFormData> = async (data) => {
+      console.log(data);
+      try {
+          const respose = await axios.post("http://localhost:8000/api/v1/register/", data)
+          console.log("Respose",respose);
 
-  const onSubmit: SubmitHandler<RegisterFormData> = (data) => {
-    console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+//   useEffect(() => {}, []);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
