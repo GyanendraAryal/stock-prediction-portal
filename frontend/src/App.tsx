@@ -1,11 +1,15 @@
-import Hello from "./components/Hello";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+
 function App() {
   return (
     <>
-      <h1 className="text-4xl text-orange-500 text-center">
-        Stock Prediction Web App
-      </h1>
-      <Hello />
+      <div className="h-[100vh] w-full bg-slate-800">
+        <Header />
+        <Home />
+        <Footer />
+      </div>
     </>
   );
 }
