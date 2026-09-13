@@ -1,17 +1,33 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Layout from "./layout/Layout";
+import { createBrowserRouter, RouterProvider } from "react-router";
 
 function App() {
-  return (
-    <>
-      <div className="h-[100vh] w-full bg-slate-800">
-        <Header />
-        <Home />
-        <Footer />
-      </div>
-    </>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "",
+      element: <Layout />,
+      children: [
+        {
+          path: "",
+          element: <Home />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+      ],
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
 export default App;
