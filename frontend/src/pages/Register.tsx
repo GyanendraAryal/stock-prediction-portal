@@ -12,21 +12,23 @@ function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>();
   //   http://localhost:8000/api/v1/register/
   const onSubmit: SubmitHandler<RegisterFormData> = async (data) => {
-      console.log(data);
-      try {
-          const respose = await axios.post("http://localhost:8000/api/v1/register/", data)
-          console.log("Respose",respose);
-
+    console.log(data);
+    try {
+      const respose = await axios.post(
+        "http://localhost:8000/api/v1/register/",
+        data,
+      );
+      console.log("Respose", respose);
     } catch (error) {
       console.log(error);
     }
   };
 
-//   useEffect(() => {}, []);
+  //   useEffect(() => {}, []);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
@@ -142,9 +144,10 @@ function Register() {
           {/* Submit */}
           <button
             type="submit"
+            disabled={isSubmitting}
             className="w-full rounded-lg bg-sky-500 px-4 py-2.5 font-semibold text-white transition hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Register
+            {isSubmitting ? "Submitting" : "Register"}
           </button>
         </form>
       </div>
