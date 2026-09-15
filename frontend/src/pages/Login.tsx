@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link } from "react-router";
+import axios from "axios";
 
 function Login() {
   type LoginFormData = {
@@ -14,8 +15,16 @@ function Login() {
     formState: { errors },
   } = useForm<LoginFormData>();
 
-  const onSubmit: SubmitHandler<LoginFormData> = (data) => {
+  const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
     console.log(data);
+    try {
+        const response = await axios.post("http://localhost:8000/api/v1/token/", data);
+        console.log("Response",response.data);
+
+    } catch (error) {
+        console.log(error);
+
+    }
   };
 
   return (
