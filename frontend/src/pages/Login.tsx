@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link } from "react-router";
 import axios from "axios";
 import { useNavigate } from "react-router";
-
+import { AuthContext } from "../context/AuthProvider";
 function Login() {
   type LoginFormData = {
     username: string;
@@ -16,9 +16,10 @@ function Login() {
     formState: { errors },
   } = useForm<LoginFormData>();
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
-    const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
+  const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
     console.log(data);
     try {
       const response = await axios.post(
@@ -30,8 +31,9 @@ function Login() {
       const refreshToken = response.data.refresh;
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-        console.log("Logged in successfully");
-        navigate("/")
+      console.log("Logged in successfully");
+      setIsLoggedIn(true);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

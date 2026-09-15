@@ -1,7 +1,16 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../context/AuthProvider";
 
 function Header() {
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
   return (
     <header className="w-full bg-slate-800 shadow-md">
       <div
@@ -38,65 +47,33 @@ function Header() {
 
         {/* Navigation Buttons */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-4">
-          <Link
-            to="/login"
-            className="
-              flex
-              h-9
-              min-w-18
-              items-center
-              justify-center
-              rounded-lg
-              bg-sky-500
-              px-3
-              text-sm
-              font-medium
-              text-slate-900
-              transition-all
-              duration-200
-              hover:bg-sky-400
-              focus:outline-none
-              focus:ring-2
-              focus:ring-sky-300
-              sm:h-10
-              sm:min-w-20
-              sm:px-4
-              sm:text-base
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="
+              flex h-9 min-w-18 items-center justify-center rounded-lg  bg-sky-500  px-3 text-sm font-medium  text-slate-900 transition-all duration-200 hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-300 sm:h-10 sm:min-w-20 sm:px-4 sm:text-base cursor-pointer"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="
+              flex cursor-pointer h-9 min-w-18 items-center justify-center rounded-lg  bg-sky-500  px-3 text-sm font-medium  text-slate-900 transition-all duration-200 hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-300 sm:h-10 sm:min-w-20 sm:px-4 sm:text-base
             "
-          >
-            Login
-          </Link>
+              >
+                Login
+              </Link>
 
-          <Link
-            to="/register"
-            className="
-              flex
-              h-9
-              min-w-18
-              items-center
-              justify-center
-              rounded-lg
-              border
-              border-sky-500
-              px-3
-              text-sm
-              font-medium
-              text-sky-400
-              transition-all
-              duration-200
-              hover:bg-sky-500
-              hover:text-slate-900
-              focus:outline-none
-              focus:ring-2
-              focus:ring-sky-300
-              sm:h-10
-              sm:min-w-20
-              sm:px-4
-              sm:text-base
-            "
-          >
-            Register
-          </Link>
+              <Link
+                to="/register"
+                className=" flex cursor-pointer h-9 min-w-18 items-center justify-center rounded-lg border  border-sky-500 px-3 text-sm font-medium  text-sky-400 transition-all duration-200  hover:bg-sky-500  hover:text-slate-900 focus:outline-none focus:ring-2  focus:ring-sky-300 sm:h-10 sm:min-w-20 sm:px-4 sm:text-base"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
