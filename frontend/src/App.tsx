@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Layout from "./layout/Layout";
 import Dashboard from "./components/Dashboard";
+import PrivateRoute from "./PrivateRoute";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 function App() {
@@ -27,7 +28,11 @@ function App() {
         },
         {
           path: "/dashboard",
-          element: <Dashboard />,
+          element: (
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          ),
         },
       ],
     },
