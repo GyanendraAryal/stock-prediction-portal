@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Layout from "./layout/Layout";
 import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 function App() {
@@ -20,11 +21,19 @@ function App() {
         },
         {
           path: "/register",
-          element: <Register />,
+          element: (
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          ),
         },
         {
           path: "/login",
-          element: <Login />,
+          element: (
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          ),
         },
         {
           path: "/dashboard",

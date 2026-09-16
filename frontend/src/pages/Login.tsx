@@ -21,20 +21,20 @@ function Login() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
-    console.log(data);
+    // console.log(data);
     try {
       const response = await AxiosInstance.post(
         "http://localhost:8000/api/v1/token/",
         data,
       );
-      console.log("Response", response.data);
+    //   console.log("Response", response.data);
       const accessToken = response.data.access;
       const refreshToken = response.data.refresh;
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-      console.log("Logged in successfully");
+    //   console.log("Logged in successfully");
       setIsLoggedIn(true);
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     }
