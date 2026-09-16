@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 function Home() {
   return (
@@ -36,11 +37,10 @@ function Home() {
           "
         >
           This stock prediction application utilizes machine learning
-          techniques, specifically employing Keras and LSTM models,
-          integrated with the Django Framework. It forecasts future stock
-          prices by analyzing 100-day moving averages, essential indicators
-          widely used by stock analysts to inform trading and investment
-          decisions.
+          techniques, specifically employing Keras and LSTM models, integrated
+          with the Django Framework. It forecasts future stock prices by
+          analyzing 100-day moving averages, essential indicators widely used by
+          stock analysts to inform trading and investment decisions.
         </p>
 
         <button
@@ -49,23 +49,23 @@ function Home() {
             mt-2
             cursor-pointer
             rounded-lg
-            border border-yellow-500
+            border border-sky-500
             px-6 py-2
-            text-base font-medium text-yellow-300
+            text-base font-medium text-sky-300
             transition
             duration-200
-            hover:bg-yellow-500
+            hover:bg-sky-500
             hover:text-slate-900
             focus:outline-none
             focus:ring-2
-            focus:ring-yellow-400
+            focus:ring-sky-400
             focus:ring-offset-2
             focus:ring-offset-slate-700
             sm:px-8 sm:py-2.5
             sm:text-lg
           "
         >
-          Login
+          <Link to="/dashboard">Explore Now</Link>
         </button>
       </div>
     </main>

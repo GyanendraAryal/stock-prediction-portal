@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Layout from "./layout/Layout";
+import Dashboard from "./components/Dashboard";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/dashboard",
+          element: <Dashboard />,
         },
       ],
     },

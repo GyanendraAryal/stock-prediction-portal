@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link } from "react-router";
 import axios from "axios";
+import AxiosInstance from "../AxiosInstance";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthProvider";
 function Login() {
@@ -22,11 +23,11 @@ function Login() {
   const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
     console.log(data);
     try {
-      const response = await axios.post(
+      const response = await AxiosInstance.post(
         "http://localhost:8000/api/v1/token/",
         data,
       );
-      console.log("Response", response.data.refresh);
+      console.log("Response", response.data);
       const accessToken = response.data.access;
       const refreshToken = response.data.refresh;
       localStorage.setItem("accessToken", accessToken);

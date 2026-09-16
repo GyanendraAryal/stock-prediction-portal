@@ -48,13 +48,21 @@ function Header() {
         {/* Navigation Buttons */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-4">
           {isLoggedIn ? (
-            <button
-              onClick={handleLogout}
-              className="
+            <>
+              <button
+                className="
               flex h-9 min-w-18 items-center justify-center rounded-lg  bg-sky-500  px-3 text-sm font-medium  text-slate-900 transition-all duration-200 hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-300 sm:h-10 sm:min-w-20 sm:px-4 sm:text-base cursor-pointer"
-            >
-              Logout
-            </button>
+              >
+                <Link to="/dashboard">Dashboard</Link>
+              </button>
+              <button
+                onClick={handleLogout}
+                className="
+              flex h-9 min-w-18 items-center justify-center rounded-lg  bg-sky-500  px-3 text-sm font-medium  text-slate-900 transition-all duration-200 hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-300 sm:h-10 sm:min-w-20 sm:px-4 sm:text-base cursor-pointer"
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <>
               <Link
